@@ -1,19 +1,25 @@
-#main {
-    margin-top: 60px;
-    text-align: center;
-    color: #FFFFFF;
-}
-
-#main a {
-    color: #FFFFFF;
-    border-color: #FFFFFF;
-    border-radius: 10px;
-}
 
 #view-details-button {
     background-color: #000;
 }
 
+.add-button {
+    background-color: #000;
+    color: #FFFFFF;
+}
+
 #upcoming-events {
     font-size: 20px;
+}
+
+.member {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 16px;
+    line-height: 1.42857143;
+    color: #000;
+}
+
+.page-header {
+    padding-bottom: 20px;
+    margin-top: 0px;
 }

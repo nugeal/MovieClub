@@ -1,8 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%><!DOCTYPE html>
 <html>
     <head>
         <title>Film Society</title>
@@ -12,16 +12,18 @@
         <style>
             body {
                 height: 100%;
-                background-image:url(${pageContext.request.contextPath}/images/sitebackground.jpg);
+                background-color: #e6edea;
                 background-position: center;
                 background-attachment: fixed;
                 background-repeat: no-repeat;
                 background-size: cover;
             }
-            #main a {
-                color: #FFFFFF;
-                border-color: #FFFFFF;
-                border-radius: 10px;
+            #main {
+                padding-left: 30px;
+                padding-right: 30px;
+            }
+            .edit-delete-link {
+                font-size: 10px;
             }
         </style>
     </head>
@@ -51,6 +53,7 @@
                                     <a href="${pageContext.request.contextPath}/displayMembersPage">Members</a>
                                 </li>
                                 <li>
+                                <li>
                                     <a href="${pageContext.request.contextPath}/displayEventsPage">Events</a>
                                 </li>
                             </ul>
@@ -60,14 +63,41 @@
                 </nav>
             </div>
         </div>
-        <div id="main" class="container" style="margin-top: 60px; color: #FFFFFF;"> 
-            <div class="row text-center">
-                <ul class="list-group" id="errorMessages"></ul>
-                <h1>Upcoming Events</h1>
-                <button id="view-details-button" class="btn btn-lg">
-                    View Details
-                </button>
-                <div id="upcoming-events"></div>
+        <div id= "main" class="container"> 
+            <div class="row page-header">
+                <h1>Members</h1>
+                <a href="${pageContext.request.contextPath}/addMemberForm"
+                   class="btn btn-default add-button" id="add-member-button"
+                   type="button">
+                    Add Member
+                </a>
+            </div>
+            <div class="row">
+                <c:forEach var="currentMember" items="${memberList}">
+                    <div class="col-md-3 text-center">
+                        <p class="text-center member">
+                            <c:out value="${currentMember.first_name} ${currentMember.last_name}"/>
+                        </p>
+                        <c:if test="${currentMember.member_image != null}">
+                            <p>
+                                <img src="${pageContext.request.contextPath}/photos/${currentMember.member_id}"
+                                     class="center-block" height="150px" width="150px">
+                            </p>   
+                        </c:if>
+                        <p class="edit-delete-link">
+                            <a href="${pageContext.request.contextPath}/editMemberForm?member_id=${currentMember.member_id}">
+                                Edit
+                            </a>
+                        </p>
+                        <p class="edit-delete-link">
+                            <a href="${pageContext.request.contextPath}/deleteMember?member_id=${currentMember.member_id}">
+                                Delete
+                            </a>
+                        </p>
+                    </div>
+
+                </c:forEach>
+
             </div>
         </div>
         <!-- Placed at the end of the document so the pages load faster -->

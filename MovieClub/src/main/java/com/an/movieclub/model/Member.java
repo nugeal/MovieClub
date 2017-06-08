@@ -7,6 +7,8 @@ package com.an.movieclub.model;
 
 import java.util.Arrays;
 import java.util.Objects;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  *
@@ -15,7 +17,11 @@ import java.util.Objects;
 public class Member {
 
     private int member_id;
+    @NotEmpty(message = "You must supply a value for First Name.")
+    @Length(max = 20, message = "Name must be no more than 20 characters in length.")
     private String first_name;
+    @NotEmpty(message = "You must supply a value for Last Name.")
+    @Length(max = 20, message = "Name must be no more than 20 characters in length.")
     private String last_name;
     private byte[] member_image;
 
@@ -88,6 +94,6 @@ public class Member {
         return true;
     }
 
-    
+
 
 }
