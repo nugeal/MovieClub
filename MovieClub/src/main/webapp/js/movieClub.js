@@ -97,21 +97,30 @@ function showResults(data) {
     } else {
         $('#eventResultsTable').show();
         $.each(data, function(index, dataItem){
-            var month = dataItem.event_date.monthValue;
-            var day = dataItem.event_date.dayOfMonth;
-            var year = dataItem.event_date.year;
-            var theme = dataItem.theme;
-            var movie = dataItem.movie;
-            var location = dataItem.location;
+            var monthText = dataItem.event_date.monthValue;
+            var dayText = dataItem.event_date.dayOfMonth;
+            var yearText = dataItem.event_date.year;
+            var themeText = dataItem.theme;
+            var movieText = dataItem.movie_name;
+            var locationText = dataItem.location;
             
-            var row = '<tr>';
-            row += '<td>'+month+'/'+day+'/'+year+'</td>';
-            row += '<td>'+theme+'</td>';
-            row += '<td>'+movie+'</td>';
-            row += '<td>'+location+'</td>';
-            row += '</tr>';
+            var row = "<tr>";
+            row += '<td>'+monthText+'/'+dayText+'/'+yearText+'</td>';
             
-            $('#eventResultsTable').append(row);
+            if(themeText.length !== 0) {
+                row += '<td>'+themeText+'</td>';
+            } else {row += '<td>'+""+'</td>';}
+            
+            if(movieText.length !== 0) {
+                row += '<td>'+movieText+'</td>';
+            } else {row += '<td>'+""+'</td>';}
+            
+            if(locationText !== null) {
+                row += '<td>'+locationText+'</td>';
+            } else {row += '<td>'+""+'</td>';}
+            row += "</tr>";
+            
+            $('#event-search-results').append(row);
         }); 
     }
 }

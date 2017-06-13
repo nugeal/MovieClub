@@ -105,4 +105,9 @@ public class MovieClubServiceImpl implements MovieClubServiceLayer {
         return eventDao.getEventsByMemberId(member_id);
     }
 
+    @Override
+    public void deleteEvent(int event_id) {
+        eventDao.deleteEvent(event_id);
+    }
+
 }

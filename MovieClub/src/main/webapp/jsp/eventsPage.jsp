@@ -77,41 +77,48 @@
 
             <!-- Begin Event Search Results Div -->
             <div class="row">
-                <div id="resultsTable">
-                    <table class="table table-responsive">
-                        <tr>
-                            <th width="10%">Date</th>
-                            <th width="20%">Host</th>
-                            <th width="30%">Theme</th>
-                            <th width="15%">Movie</th>
-                            <th width="15%">Location</th>
-                            <th width="10%"></th>
-                        </tr>
-                        <c:forEach var="currentEvent" items="${upcomingEventList}">
+                <div id="upcomingEventsTable">
+                    <c:if test="${upcomingEventList.size() != 0}">
+                        <table class="table table-responsive">
+                            <caption class="text-center">
+                                Upcoming Events
+                            </caption>
                             <tr>
-                                <td>
-                                    <c:out value="${currentEvent.event_date}"/>
-                                </td>
-                                <td>
-                                    <c:out value="${currentEvent.member.first_name} ${currentEvent.member.last_name}"/>
-                                </td>
-                                <td>
-                                    <c:out value="${currentEvent.theme}"/>
-                                </td>
-                                <td>
-                                    <c:out value="${currentEvent.movie_name}"/>
-                                </td>
-                                <td>
-                                    <c:out value="${currentEvent.location}"/>
-                                </td>
-                                <td>
-                                    <a href="${pageContext.request.contextPath}/updateEventForm?event_id=${currentEvent.event_id}">
-                                        Update
-                                    </a>
-                                </td>
+                                <th width="10%">Date</th>
+                                <th width="20%">Host</th>
+                                <th width="30%">Theme</th>
+                                <th width="15%">Movie</th>
+                                <th width="15%">Location</th>
+                                <th width="10%"></th>
                             </tr>
-                        </c:forEach>
-                    </table> 
+                            <c:forEach var="currentEvent" items="${upcomingEventList}">
+                                <tr>
+                                    <td>
+                                        <c:out value="${currentEvent.event_date}"/>
+                                    </td>
+                                    <td>
+                                        <c:out value="${currentEvent.member.first_name} ${currentEvent.member.last_name}"/>
+                                    </td>
+                                    <td>
+                                        <c:out value="${currentEvent.theme}"/>
+                                    </td>
+                                    <td>
+                                        <c:out value="${currentEvent.movie_name}"/>
+                                    </td>
+                                    <td>
+                                        <c:out value="${currentEvent.location}"/>
+                                    </td>
+                                    <td>
+                                        <a href="${pageContext.request.contextPath}/updateEventForm?event_id=${currentEvent.event_id}">
+                                            Update
+                                        </a> | <a href="${pageContext.request.contextPath}/deleteEvent?event_id=${currentEvent.event_id}">
+                                            Delete
+                                        </a>
+                                    </td>
+                                </tr>
+                            </c:forEach>
+                        </table>
+                    </c:if>   
                 </div>
             </div>
             <!-- End Begin Event Search Results Div -->

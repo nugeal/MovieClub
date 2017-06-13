@@ -120,8 +120,8 @@
                         <tr>
                             <th width="10%">Date</th>
                             <th width="30%">Theme</th>
-                            <th width="15%">Movie</th>
-                            <th width="15%">Location</th>
+                            <th width="30%">Movie</th>
+                            <th width="30%">Location</th>
                         </tr>
                         <tbody id="event-search-results"></tbody>
                     </table> 

@@ -137,4 +137,13 @@ public class EventController {
         return service.getEventsByMember_Id(member_id);
     }
 
+    @RequestMapping(value = "/deleteEvent", method = RequestMethod.GET)
+    public String deleteEvent(HttpServletRequest request, Model model) {
+        String eventIdParameter = request.getParameter("event_id");
+        int event_id = Integer.parseInt(eventIdParameter);
+        service.deleteEvent(event_id);
+
+        return "redirect:displayEventsPage";
+    }
+
 }

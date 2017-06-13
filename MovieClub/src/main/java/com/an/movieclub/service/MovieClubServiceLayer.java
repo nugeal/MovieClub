@@ -41,4 +41,6 @@ public interface MovieClubServiceLayer {
 
     public List<Event> getEventsByMember_Id(int member_id);
 
+    public void deleteEvent(int event_id);
+
 }
