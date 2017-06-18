@@ -27,12 +27,29 @@ $(document).ready(function () {
             type: "GET",
             url: "http://localhost:8080/MovieClub/searchByMember/"+member_id,
             dataType: 'json',
-            success: function(data) {
-                
-                showResults(data);
-                
+            success: function(data) {   
+                showResults(data);   
             }
             
+        });
+    });
+    
+    $('#search-date-range-button').click(function(event){
+        $.ajax({
+            type: "POST",
+            url: "http://localhost:8080/MovieClub/searchByDateRange",
+            data: JSON.stringify({
+                startDate: $('#startDate').val(),
+                endDate: $('#endDate').val()
+            }),
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            'dataType': 'json',
+            success: function(data) {
+                showResults(data);
+            }
         });
     });
 });
@@ -82,10 +99,20 @@ function homeMessage(data) {
 
 function showMemberSelectorForm() {
     $('#member-selector-form').show();
+    $('#date-range-select-form').hide();    
 }
 
 function hideMemberSelectorForm() {
     $('#member-selector-form').hide();
+}
+
+function showDateRangeSelectorForm() {
+    $('#date-range-select-form').show();
+    $('#member-selector-form').hide();
+}
+
+function hideDateRangeSelectForm() {
+    $('#date-range-select-form').hide();
 }
 
 function showResults(data) {
@@ -101,6 +128,7 @@ function showResults(data) {
             var dayText = dataItem.event_date.dayOfMonth;
             var yearText = dataItem.event_date.year;
             var themeText = dataItem.theme;
+            var member = dataItem.member.first_name + " " + dataItem.member.last_name;
             var movieText = dataItem.movie_name;
             var locationText = dataItem.location;
             
@@ -110,6 +138,8 @@ function showResults(data) {
             if(themeText.length !== 0) {
                 row += '<td>'+themeText+'</td>';
             } else {row += '<td>'+""+'</td>';}
+            
+            row += '<td>'+member+'</td>';
             
             if(movieText.length !== 0) {
                 row += '<td>'+movieText+'</td>';

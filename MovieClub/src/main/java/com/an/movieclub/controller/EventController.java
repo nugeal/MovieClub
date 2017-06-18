@@ -11,11 +11,13 @@ import com.an.movieclub.service.MovieClubServiceLayer;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Map;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -144,6 +146,19 @@ public class EventController {
         service.deleteEvent(event_id);
 
         return "redirect:displayEventsPage";
+    }
+
+    @RequestMapping(value="/searchByDateRange", method=RequestMethod.POST)
+    @ResponseBody
+    public List<Event> searchByDateRange(@RequestBody Map<String, String> dateMap) {
+
+        LocalDate startDate = LocalDate.parse(dateMap.get("startDate"),
+                                DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+
+        LocalDate endDate = LocalDate.parse(dateMap.get("endDate"),
+                                DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+
+        return service.getEventsByDateRange(startDate, endDate);
     }
 
 }

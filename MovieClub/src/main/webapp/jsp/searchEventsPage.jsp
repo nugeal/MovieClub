@@ -64,7 +64,8 @@
             <div class="row page-header">
                 <h1>Events</h1>
                 <button id="date-range-search-button"
-                        class="btn btn-default add-button" role="button">
+                        class="btn btn-default add-button" role="button"
+                        onclick="showDateRangeSelectorForm()">
                     Search by Date Range
                 </button>
                 <a id="member-search-button"
@@ -97,7 +98,7 @@
                 <div class="form-group">
                     <div class="col-md-1 col-sm-offset-1">
                         <button class="btn btn-default"
-                           onclick="hideMemberSelectorForm()">
+                                onclick="hideMemberSelectorForm()">
                             Cancel
                         </button>
                     </div>
@@ -111,17 +112,60 @@
             </form>
             <!-- End Member Selector Form -->
 
+            <!-- Begin Date Range Selector Form -->
+            <form id="date-range-select-form" class="form-horizontal" role="form"
+                  hidden>
+
+                <div class="form-group">
+                    <label for="start-date" class="col-md-2 control-label">Start Date:</label>
+                    <div class="col-md-2">
+                        <input class="form-control" type="date"
+                               id="startDate" placeholder="MM/DD/YYYY" required
+                               name="start_date"
+                               />
+                    </div>  
+                </div>
+
+                <div class="form-group">
+                    <label for="end-date" class="col-md-2 control-label">End Date:</label>
+                    <div class="col-md-2">
+                        <input class="form-control" type="date"
+                               id="endDate" placeholder="MM/DD/YYYY" required
+                               name="end_date"
+                               />
+                    </div>  
+                </div>
+                <div class="form-group">
+                    <div class="col-md-1 col-sm-offset-2">
+                        <button class="btn btn-default"
+                                onclick="hideDateRangeSelectForm()">
+                            Cancel
+                        </button>
+                    </div>
+                    
+                    <div class="col-md-1">
+                        <button id="search-date-range-button" type="button"
+                                class="btn btn-default">
+                            Search
+                        </button>
+                    </div>
+                </div>
+
+            </form>
+            <!-- Begin Date Range Selector Form -->
+
             <!-- Begin Event Search Results Div -->
             <div class="row">
                 <div id="no-data-message"></div>
-                
+
                 <div id="eventResultsTable" hidden>
                     <table class="table table-responsive">
                         <tr>
                             <th width="10%">Date</th>
                             <th width="30%">Theme</th>
-                            <th width="30%">Movie</th>
-                            <th width="30%">Location</th>
+                            <th width="20">Member</th>
+                            <th width="20%">Movie</th> 
+                            <th width="20%">Location</th>
                         </tr>
                         <tbody id="event-search-results"></tbody>
                     </table> 

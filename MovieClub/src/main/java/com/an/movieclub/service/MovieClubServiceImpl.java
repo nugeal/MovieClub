@@ -110,4 +110,9 @@ public class MovieClubServiceImpl implements MovieClubServiceLayer {
         eventDao.deleteEvent(event_id);
     }
 
+    @Override
+    public List<Event> getEventsByDateRange(LocalDate startDate, LocalDate endDate) {
+        return eventDao.getEventsByDateRange(startDate, endDate);
+    }
+
 }

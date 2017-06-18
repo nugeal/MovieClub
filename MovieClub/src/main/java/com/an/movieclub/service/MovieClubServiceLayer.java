@@ -8,6 +8,7 @@ package com.an.movieclub.service;
 import com.an.movieclub.model.Event;
 import com.an.movieclub.model.Member;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.List;
 import javax.servlet.http.Part;
 
@@ -42,5 +43,7 @@ public interface MovieClubServiceLayer {
     public List<Event> getEventsByMember_Id(int member_id);
 
     public void deleteEvent(int event_id);
+
+    public List<Event> getEventsByDateRange(LocalDate startDate, LocalDate endDate);
 
 }
